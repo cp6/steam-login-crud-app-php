@@ -1,6 +1,6 @@
 {
-  "name": "corbpie/steamlogin",
-  "description": "Simple Steam login authenticator using OpenId",
+  "name": "corbpie/steamlogincrudapp",
+  "description": "PHP OOP auto-loading CRUD app using OpenID Steam login authentication",
   "type": "project",
   "license": "MIT",
   "autoload": {
@@ -10,8 +10,8 @@
   },
   "authors": [
     {
-      "name": "cp6",
-      "email": "cp6@users.noreply.github.com"
+      "name": "corbpie",
+      "email": "contact@corbpie.com"
     }
   ],
   "minimum-stability": "dev",
