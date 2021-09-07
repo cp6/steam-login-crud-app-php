@@ -17,9 +17,11 @@ CREATE TABLE IF NOT EXISTS `accounts`
     `first_login`     datetime              DEFAULT current_timestamp(),
     `last_login`      datetime              DEFAULT NULL,
     `times_logged_in` int(11)      NOT NULL DEFAULT 0,
+    `email`           varchar(255)          DEFAULT NULL,
     PRIMARY KEY (`uid`) USING BTREE,
     UNIQUE KEY `Index 2` (`steam_id`),
-    UNIQUE KEY `Index 3` (`key`)
+    UNIQUE KEY `Index 3` (`key`),
+    UNIQUE KEY `email_index` (`email`)
 ) ENGINE = InnoDB
   DEFAULT CHARSET = utf8mb4;
 
