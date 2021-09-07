@@ -15,13 +15,9 @@ class General extends Config
 
     public function db_connect(): pdo
     {
-        $host = '127.0.0.1';
-        $db_name = 'steam_login';
-        $db_user = 'root';
-        $db_password = '';
-        $db = "mysql:host=$host;dbname=$db_name;charset=utf8mb4";
+        $db = "mysql:host=" . self::DB_HOST . ";dbname=" . self::DB_NAME . ";charset=utf8mb4";
         $options = array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION);
-        return new PDO($db, $db_user, $db_password, $options);
+        return new PDO($db, self::DB_USERNAME, self::DB_PASSWORD, $options);
     }
 
     protected function dateTimeFormat(string $dt, string $return_format = 'Y-m-d H:i:s'): string
