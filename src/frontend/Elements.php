@@ -26,14 +26,33 @@ class Elements extends User
             <meta name="viewport" content="width=device-width, initial-scale=1">
             <meta http-equiv="X-UA-Compatible" content="IE=edge">
             <?= $this->pageTitle($title) ?>
-            <?= $this->pageDescription($description) ?>
+            <?php
+            $this->pageDescription($description);
+            $this->CSSLinks();
+            ?>
         </head>
         <body>
         <?php
     }
 
+    private function CSSLinks(): void
+    {
+        echo "<link rel='stylesheet' href='" . self::ASSETS_URL . "/css/bootstrap.min.css'/>";
+    }
+
+    private function JSLinks(bool $jquery = true, bool $bootstrap = true): void
+    {
+        if ($jquery) {
+            echo "<script src='" . self::ASSETS_URL . "/js/jquery.min.js'></script>";
+        }
+        if ($bootstrap) {
+            echo "<script src='" . self::ASSETS_URL . "/js/bootstrap.min.js'></script>";
+        }
+    }
+
     protected function pageClose(): void
     {
+        $this->JSLinks();
         echo "</body></html>";
     }
 
