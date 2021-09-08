@@ -41,6 +41,31 @@ class Pages extends Elements
         }
     }
 
+    public function editAccountPage(): void
+    {
+        if (!$this->isLoggedIn()) {//Not logged in
+            $this->doHeader(self::URL);
+        } else {
+            $this->pageHeader('Edit account Page', 'This is the edit account page');
+            if (isset($_POST['submit-form'])) {
+                if ($this->updateAccountEmail($_POST['email_address'])) {
+                    echo "<b>Updated your email address</b>";
+                } else {
+                    echo "<b>Error updating your email address</b>";
+                }
+            }
+            $ac = $this->accountData($_SESSION['steam_id']);
+            (is_null($ac['email'])) ? $email = '' : $email = $ac['email'];
+            echo "<form id='edit-account-form' method='post'>";
+            $this->inputLabel('Email address: ', 'email_address');
+            $this->textInput('email_address', '', $email);
+            echo "<br>";
+            echo "<input type='submit' name='submit-form' value='Updated'>";
+            echo "</form>";
+            $this->pageClose();
+        }
+    }
+
     public function homePage(): void
     {
         $this->pageHeader('Home page', 'This is the home page');

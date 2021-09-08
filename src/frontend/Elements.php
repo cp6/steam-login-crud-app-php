@@ -37,4 +37,18 @@ class Elements extends User
         echo "</body></html>";
     }
 
+    protected function inputLabel(string $text, string $for): void
+    {
+        echo "<label for='$for'>$text</label>";
+    }
+
+    protected function textInput(string $id_name, string $placeholder = '', string $value = '', int $max_length = 255, int $min_length = 6, bool $required = true): void
+    {
+        ($required) ? $req = ' required' : $req = '';
+        (!empty($placeholder)) ? $plh = "placeholder='$placeholder'" : $plh = '';
+        (!empty($value)) ? $v = "value='$value'" : $v = '';
+        echo "<input class='form-control' type='text' id='$id_name' name='$id_name' $plh $v maxlength='$max_length' minlength='$min_length'$req></input";
+    }
+
+
 }
