@@ -17,12 +17,18 @@ class Pages extends Elements
         if (!$this->isLoggedIn()) {//Not logged in
             $this->doHeader(self::URL);
         }
+        $account_data = $this->accountData($_SESSION['steam_id']);
         $this->pageHeader('Account page', 'This is your account page');
         echo "<div class='container'>";
         echo "<div class='row text-center'>";
         echo "<p>This is your account page {$_SESSION['username']}!</p>";
         echo "<p>Steam id: <i>{$_SESSION['steam_id']}</i></p>";
         echo "<p>User id: <i>{$_SESSION['uid']}</i></p>";
+        echo "<p>Key: <i>{$account_data['key']}</i></p>";
+        echo "<p>Email: <i>{$account_data['email']}</i> <a href='edit/'>edit</a></p>";
+        echo "<p>First login: <i>{$this->dateTimeFormat($account_data['first_login'], 'g:i:sa l jS F Y')}</i></p>";
+        echo "<p>Last login: <i>{$this->dateTimeFormat($account_data['last_login'], 'g:i:sa l jS F Y')}</i></p>";
+        echo "<p>Times logged in: <i>{$account_data['times_logged_in']}</i></p>";
         echo "<p><a href='" . self::URL . "/delete'>Delete account</a></p>";
         echo "</div></div>";
         $this->pageClose();
@@ -89,7 +95,7 @@ class Pages extends Elements
             echo "<p>You are not logged in. <a href='login/'>Login here</a></p>";
         } else {
             $username = $_SESSION['username'];
-            echo "<p>Hello $username! <br> You can logout <a href='logout/'>here</a>.</p>";
+            echo "<p>Hello $username! <br> You can logout <a href='logout/'>here</a> or go to <a href='account/'>account page</a>.</p>";
         }
         echo "</div></div>";
         $this->pageClose();
