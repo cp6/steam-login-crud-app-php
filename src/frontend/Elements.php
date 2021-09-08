@@ -16,7 +16,7 @@ class Elements extends User
         echo "<meta name='description' content='$description'>";
     }
 
-    protected function pageHeader(string $title, string $description): void
+    protected function pageHeader(string $title, string $description, string $custom_css_file = ''): void
     {
         ?>
         <!DOCTYPE html>
@@ -29,6 +29,9 @@ class Elements extends User
             <?php
             $this->pageDescription($description);
             $this->CSSLinks();
+            if (!empty($custom_css_file)) {
+                echo "<link rel='stylesheet' href='" . self::ASSETS_URL . "/css/$custom_css_file'/>";
+            }
             ?>
         </head>
         <body>
@@ -50,9 +53,12 @@ class Elements extends User
         }
     }
 
-    protected function pageClose(): void
+    protected function pageClose(string $custom_js_file = ''): void
     {
         $this->JSLinks();
+        if (!empty($custom_js_file)) {
+            echo "<script src='" . self::ASSETS_URL . "/js/$custom_js_file'></script>";
+        }
         echo "</body></html>";
     }
 
