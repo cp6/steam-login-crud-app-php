@@ -76,4 +76,22 @@ class General extends Config
     {//Cleans steam username
         return preg_replace('/[^a-zA-Z0-9.=_!?<>|()#-]/s', '', $username);
     }
+
+    protected function createAccountKey(int $length = 32): string
+    {
+        $key = $this->genString($length);
+        if ($this->doesKeyExist($key)) {
+            return $this->createAccountKey($length);
+        }
+        return $key;
+    }
+
+    protected function createUID(int $length = 6): string
+    {
+        $uid = $this->genString($length);
+        if ($this->doesUIDExist($uid)) {
+            return $this->createUID($length);
+        }
+        return $uid;
+    }
 }

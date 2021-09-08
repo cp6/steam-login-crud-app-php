@@ -41,7 +41,7 @@ class User extends Delete
             $_SESSION['username'] = $this->username = $account_data['username'];
             $this->updateAccountLogin();
         } else {//New, first time account
-            $_SESSION['uid'] = $this->uid = $this->genString(6);
+            $_SESSION['uid'] = $this->uid = $this->createUID(6);//Create UID that is unique
             $_SESSION['username'] = $this->username = $this->user_data['name'];
             $this->insertNewAccount($this->uid, $this->steam_id, $this->username);
             $this->saveAvatar();

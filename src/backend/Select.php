@@ -18,4 +18,28 @@ class Select extends General
         }
         return array();//Empty
     }
+
+    protected function doesKeyExist(string $key): bool
+    {
+        $select = $this->db->prepare("SELECT `key` FROM `accounts` WHERE `key` = ? LIMIT 1;");
+        $select->execute([$key]);
+        $row = $select->fetch(PDO::FETCH_ASSOC);
+        if (!empty($row)) {//Row found
+            return true;
+        } else {//NO row found
+            return false;
+        }
+    }
+
+    protected function doesUidExist(string $uid): bool
+    {
+        $select = $this->db->prepare("SELECT `uid` FROM `accounts` WHERE `uid` = ? LIMIT 1;");
+        $select->execute([$uid]);
+        $row = $select->fetch(PDO::FETCH_ASSOC);
+        if (!empty($row)) {//Row found
+            return true;
+        } else {//NO row found
+            return false;
+        }
+    }
 }
