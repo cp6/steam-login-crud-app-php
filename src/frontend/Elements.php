@@ -66,7 +66,7 @@ class Elements extends User
         ($required) ? $req = ' required' : $req = '';
         (!empty($placeholder)) ? $plh = "placeholder='$placeholder'" : $plh = '';
         (!empty($value)) ? $v = "value='$value'" : $v = '';
-        echo "<input class='form-control' type='text' id='$id_name' name='$id_name' $plh $v maxlength='$max_length' minlength='$min_length'$req></input";
+        echo "<input class='form-control' type='text' id='$id_name' name='$id_name' $plh $v maxlength='$max_length' minlength='$min_length'$req>";
     }
 
 
