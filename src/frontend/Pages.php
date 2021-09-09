@@ -60,10 +60,14 @@ class Pages extends Elements
         } else {
             $this->pageHeader('Edit account Page', 'This is the edit account page');
             if (isset($_POST['submit-form'])) {
-                if ($this->updateAccountEmail($_POST['email_address'])) {
-                    echo "<b>Updated your email address</b>";
+                if (filter_var($_POST['email_address'], FILTER_VALIDATE_EMAIL)) {
+                    if ($this->updateAccountEmail($_POST['email_address'])) {
+                        echo "<b>Updated your email address</b>";
+                    } else {
+                        echo "<b>Error updating your email address</b>";
+                    }
                 } else {
-                    echo "<b>Error updating your email address</b>";
+                    echo "<b>Invalid email address</b>";
                 }
             }
             echo "<div class='container'>";
